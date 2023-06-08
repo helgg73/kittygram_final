@@ -17,17 +17,15 @@ services:
     depends_on:
       - db
     volumes:
-      - static:/static
+      - static:/app/collected_static/
       - media:/app/media
   frontend:
-    env_file: .env
     image: helgg/kittygtram_frontend
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
   gateway:
     image: helgg/kittygtram_gateway
-    env_file: .env
     ports:
       - 9000:80
     volumes:
