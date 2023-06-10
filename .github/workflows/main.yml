@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  tests:
+  backend_tests:
     # Разворачиваем окружение:
     runs-on: ubuntu-latest
     services:
@@ -59,10 +59,10 @@ jobs:
         cd backend/
         python manage.py test 
 
-  build_and_push_to_docker_hub:
-    name: Push Docker image to DockerHub
+  build_backend_and_push_to_docker_hub:
+    name: Push backend Docker image to DockerHub
     runs-on: ubuntu-latest
-    needs: tests
+    needs: backend_tests
     steps:
       - name: Check out the repo
         # Получение исходного кода из репозитория
@@ -162,7 +162,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: 
       # Дождёмся билда всех образов Taski
-      - build_and_push_to_docker_hub
+      - build_backend_and_push_to_docker_hub
       - build_frontend_and_push_to_docker_hub
       - build_gateway_and_push_to_docker_hub
     steps:
@@ -177,7 +177,7 @@ jobs:
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        source: "docker-compose.production.yml"
+        source: "docker-compose.production.yml,nginx/nginx.conf"
         target: "kittygram"
     - name: Executing remote ssh commands to deploy
       uses: appleboy/ssh-action@master
