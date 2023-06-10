@@ -20,7 +20,7 @@ services:
       - static:/app/collected_static/
       - media:/app/media
   frontend:
-    image: helgg/kittygtram_frontend
+    image: helgg/kittygram_frontend
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
