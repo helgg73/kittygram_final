@@ -179,6 +179,9 @@ jobs:
           echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.test
           echo DB_HOST=${{ secrets.DB_HOST }} >> .env.test
           echo DB_PORT=${{ secrets.DB_PORT }} >> .env.test
+          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env.test
+          echo ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }} >> .env.test
+          echo DEBUG=${{ secrets.DEBUG }} >> .env.test
           # Выполняет pull образов с Docker Hub
           sudo docker compose -f docker-compose.production.yml pull
           # Перезапускает все контейнеры в Docker Compose
