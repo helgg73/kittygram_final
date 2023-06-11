@@ -174,14 +174,14 @@ jobs:
           cd kittygram
           # Копируем secrets в .env.test
           # все echo "$VARS_JSON" | jq -r 'keys[] as $k | "\($k)=\(.[$k])"' >> .env.test
-          echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} > .env.test
-          echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env.test
-          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.test
-          echo DB_HOST=${{ secrets.DB_HOST }} >> .env.test
-          echo DB_PORT=${{ secrets.DB_PORT }} >> .env.test
-          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env.test
-          echo ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }} >> .env.test
-          echo DEBUG=${{ secrets.DEBUG }} >> .env.test
+          echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} > .env.tests
+          echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env.tests
+          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.tests
+          echo DB_HOST=${{ secrets.DB_HOST }} >> .env.tests
+          echo DB_PORT=${{ secrets.DB_PORT }} >> .env.tests
+          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env.tests
+          echo ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }} >> .env.tests
+          echo DEBUG=${{ secrets.DEBUG }} >> .env.tests
           # Выполняет pull образов с Docker Hub
           sudo docker compose -f docker-compose.production.yml pull
           # Перезапускает все контейнеры в Docker Compose
