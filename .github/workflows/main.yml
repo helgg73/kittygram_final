@@ -179,7 +179,7 @@ jobs:
           echo POSTGRES_PASSWORD="${{ secrets.POSTGRES_PASSWORD }}" >> .env.tests
           echo DB_HOST="${{ secrets.DB_HOST }}" >> .env.tests
           echo DB_PORT="${{ secrets.DB_PORT }}" >> .env.tests
-          echo SECRET_KEY="${{ secrets.SECRET_KEY }}"" >> .env.tests
+          echo SECRET_KEY="${{ secrets.SECRET_KEY }}" >> .env.tests
           echo ALLOWED_HOSTS="${{ secrets.ALLOWED_HOSTS }}" >> .env.tests
           echo DEBUG="${{ secrets.DEBUG }}" >> .env.tests
           # Выполняет pull образов с Docker Hub
